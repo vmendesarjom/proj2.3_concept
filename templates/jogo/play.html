@@ -1,0 +1,36 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+<form action="{% url 'concept:play-create' %}"  method="POST">
+    <div class="py-5 bg-dark" >
+        {% csrf_token %}
+        <br>
+        <div class="m-0 text-white text-center">
+                {% for field in form.visible_fields %}
+                        {%for obj in object_list %}
+                            {% for o in obj.word.concepts.all%}
+                                {{o}}
+                            {%endfor%}
+                        {%endfor%}
+                    <div class="form-group">
+                        <div style="margin-left: 110px" class="col-sm-10"> <br>
+                            <label for="nome">{{ field.label }}</label>
+                            <input type="text" id="nome" name="nome">
+                        {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+                  <div class="box-footer">
+                    <br>
+                    <button type="submit" class="btn btn-light">Tentar</button>
+                    <a href="{% url 'concept:jogo' %}" class="btn btn-dark">Cancel</a>
+                  </div>
+                  <br> <br> <br>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends '../home.html' %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+      Palavras
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    
+    <!-- Default box -->
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Palavras</h3>
+      </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+                <th style="width: 5%">#</th>
+                <th>Usuário</th>
+                <th>Palavra</th>
+                <th>Conceitos</th>
+              </tr>
+              {% for obj in object_list %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ obj.user }}</td>
+                  <td>{{ obj.word }}</td>
+                  <td>
+                  {% for s in obj.concepts.all|dictsort:"concept" %}
+                    {{ s }}
+                    {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                  </td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        Footer
+      </div>
+      <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+
+  </section>
+  <!-- /.content -->
+{% endblock %}

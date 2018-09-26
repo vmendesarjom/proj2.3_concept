@@ -1,0 +1,32 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+<form action="{% url 'concept:word-create' %}"  method="POST">
+    <div class="py-5 bg-dark" >
+        {% csrf_token %}
+        <br>
+        <div class="m-0 text-white text-center">
+                {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ field.label }}</label>
+                        <div class="col-sm-15">
+                            {{field}}
+                          {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                        <br> <br>
+                    </div>
+                {% endfor %}
+                  <div class="box-footer">
+                    <br>
+                    <button type="submit" class="btn btn-light">Salvar</button>
+                    <a href="{% url 'concept:jogo' %}" class="btn btn-dark">Cancel</a>
+                  </div>
+                  <br> <br> <br>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

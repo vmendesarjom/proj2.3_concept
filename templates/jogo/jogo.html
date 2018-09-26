@@ -1,0 +1,24 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+    <div class="py-5 bg-dark" >
+        {% csrf_token %}
+        <br> <br>
+        <h1 style="margin-left: 50px;"class="text-white"> Jogo </h1>
+        <br>
+
+        <div style="margin-left: 100px;">
+            {% if request.user.is_staff %}
+                <a class="nav-link" href="{% url 'concept:concept-create' %}"><i class="fas fa-image"></i> Cadastro de Conceitos</a>
+            {% endif %}
+            <a class="nav-link" href="{% url 'concept:word-create' %}"><i class="fas fa-pen"></i> Cadastro de Palavras</a>
+            <a class="nav-link" href="{% url 'concept:game' %}"><i class="fas fa-chess-board"></i> Partida</a>
+            <a class="nav-link" href="{% url 'concept:ranking-hits' %}"><i class="fas fa-trophy"></i> Ranking | Acertos</a>
+
+            <a class="nav-link" href="{% url 'concept:ranking-words' %}"><i class="fas fa-trophy"></i> Ranking | Palavras</a>
+
+        </div>
+        <br> <br> <br> <br> <br>  
+    </div>
+{% endblock %}

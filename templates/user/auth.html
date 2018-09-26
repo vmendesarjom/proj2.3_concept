@@ -1,0 +1,36 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+    <form action="{% url 'concept:login' %}" method="post">
+        <div class="py-5 bg-dark" >
+            {% csrf_token %}
+            <br> <br>
+            <h1 class="m-0 text-center text-white"> Login </h1>
+            <br>
+
+            <div style="margin-left: 530px; width: 300px; height: 300px;">
+            <div class="py-3">
+                <input name="username" type="text" class="form-control" placeholder="Usuário">
+            </div>
+            
+            <div class="form-group has-feedback">
+                <input name="password" type="password" class="form-control" placeholder="Senha">
+            </div>
+            <br>
+            <div style="margin-left: 113px;" class="row">
+            <div>
+                <button type="submit" class="btn btn-light" id="butaum">Entrar</button>
+            </div>
+            </div>
+        </div>
+        <!-- <script>
+            const button = document.getElementById("butaum")
+            if(button.clicked) {
+                window.location = "{% url 'concept:home' %}"
+            }
+        </script> -->
+    </form>
+
+{% endblock %}
+</html>

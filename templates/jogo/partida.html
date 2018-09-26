@@ -1,0 +1,22 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+<form action="{% url 'concept:game' %}"  method="POST">
+    <div class="py-5 bg-dark" >
+        {% csrf_token %}
+        <br>
+        <div class="m-0 text-white text-center">
+                {% for field in form.visible_fields %}
+                {% endfor %}
+                  <div class="box-footer">
+                    <br>
+                    <button type="submit" class="btn btn-light">Começar</button>
+                    <a href="{% url 'concept:jogo' %}" class="btn btn-dark">Cancel</a>
+                  </div>
+                  <br> <br> <br>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

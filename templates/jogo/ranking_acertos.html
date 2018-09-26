@@ -1,0 +1,29 @@
+{% extends '../home.html' %}
+
+{% block content %}
+
+<div class="py-5 bg-dark" >
+    {% csrf_token %}
+
+    <div class="box-body no-padding">
+        <table class="table table-striped">
+            <tbody>
+              <tr>
+                  <th style="width: 5%">Posição</th>
+                  <th>Usuário</th>
+                  <th>Pontos</th>
+                </tr>
+                {% for obj in object_list %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ obj }}</td>
+                    <td>{{ obj.pontos_hit }}</td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+</div> 
+
+{% endblock %}
