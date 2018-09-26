@@ -126,20 +126,19 @@ class PlayCreateView(CreateView):
     sucess_url = reverse_lazy("concept:jogo")
 
     def post(self, request, *args, **kwargs):
-        for partida in models.Partida.objects.filter(user=self.request.user).order_by('-id'):
-            while True:    
-                if partida.word == self.request.POST.get('nome'):
-                    partida.user.pontos_hit += 2
-                    partida.word.user.pontos_word += 1
-                    return HttpResponseRedirect(reverse('concept:home'))
-                else:
-                    return HttpResponseRedirect(reverse('concept:play-create'))
+        partida = models.Partida.objects.filter(user=self.request.user).order_by('-id').first()
+                
+        if partida.word == self.request.POST.get('nome'):
+            partida.user.pontos_hit += 2
+            partida.word.user.pontos_word += 1
+            return HttpResponseRedirect(reverse('concept:home'))
+        else:
+            return HttpResponseRedirect(reverse('concept:play-create'))
     
     def get_context_data(self, **kwargs):
         object_list = models.Partida.objects.filter(user=self.request.user).order_by('-id')
         kwargs['object_list'] = object_list
         return super(PlayCreateView, self).get_context_data(**kwargs)
-
 
 # Ranking Hits View
 #----------------------
